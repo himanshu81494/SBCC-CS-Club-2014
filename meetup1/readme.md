@@ -3,7 +3,7 @@
 
 I ended up writing two methods from a couple in mind; brute force and less brute force-y. The brute force is simply filling the 2D array with expanding margins per iteration until the center is reached. The less brute force-y method I ended up spreadhseeting to get my thoughts in order:
 
-![alt text](https://github.com/ryunp/Snippets/blob/master/SBCC-CS-Club-2014/meetup1/MeetUp1_Puzzle1.png)
+![alt text](https://github.com/ryunp/SBCC-CS-Club-2014/blob/master/meetup1/MeetUp1_Puzzle1.png)
 
 **Results for 'Brute Force' solution:**
 
