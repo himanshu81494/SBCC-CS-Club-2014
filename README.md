@@ -1,4 +1,3 @@
-SBCC-CS-Club-2014
-=================
+# SBCC CS Club 2014
 
-2014 Santa Barbara City College CS Club material
+Some stuff relating to the CS Club
