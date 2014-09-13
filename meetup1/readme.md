@@ -1,5 +1,16 @@
 # First Meet Puzzle
-> Take a single dimension array of integers and fill a double dimension array with values of concentric shrinking boxes.
+THE PROBLEM:  
+> Given a 1-dimensional integer array of arbitrary length n, write a function that outputs a 2-dimensional array of size 2n-1 x 2n-1, such that each successive element makes an inner box.
+
+    EXAMPLE INPUT: {2, 4, 7}
+    EXAMPLE OUTPUT:
+    [2 2 2 2 2]
+    [2 4 4 4 2]
+    [2 4 7 4 2]
+    [2 4 4 4 2]
+    [2 2 2 2 2]
+
+---
 
 I ended up writing two methods from a couple in mind; brute force and less brute force-y. The brute force is simply filling the 2D array with expanding margins per iteration until the center is reached. The less brute force-y method I ended up spreadhseeting to get my thoughts in order:
 
