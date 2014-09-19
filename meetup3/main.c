@@ -20,7 +20,7 @@
  */
 
 #define DEBUG 1
-#define ARRAYLEN 7
+#define ARRAYLEN 40
 
 
 /**
