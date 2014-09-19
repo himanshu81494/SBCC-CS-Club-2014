@@ -6,6 +6,7 @@ Meet 3 Puzzla
 > Given a boolean matrix (double-dimension array) in which each row is sorted, determine which row contains the maximum number of ones (true values). If multiple rows have the same number of ones, output the higher row index.
 
 SAMPLE INPUT:
+
     0000111
     0011111
     0000001
@@ -15,6 +16,7 @@ SAMPLE INPUT:
     0000111
 
 SAMPLE OUTPUT:
+
     trueMax = 6
 
 I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsheets/d/1z-ze1kIH5uhS9Y09OiaHk5n8eUmy--UJzoRqXZcvoog/pubhtml?gid=0&single=true) for the process. This really wasn't all taht complicated, so it's fairly bland.
