@@ -62,7 +62,7 @@ I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsh
 
 **OUTPUT 40x40:**
 
-        sizeof (DBA): 1908B
+    sizeof (DBA): 1908B
     &data: 0x600010340      &data+1: 0x600010ab4
     sizeof data->drink: 255
     data->drink: Smithwick's Irish Ale!
