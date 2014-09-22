@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: Ryan
  *
@@ -19,8 +19,8 @@
  * DEFINES
  */
 
-#define DEBUG 1
-#define ARRAYLEN 40
+#define OUTPUT 1
+#define ARRAYLEN 30
 
 
 /**
@@ -30,7 +30,6 @@
 typedef struct DBA_t DBA;
 typedef struct DBArow_t highest;
 typedef char bool;
-
 
 /**
  * STRUCTS
@@ -43,7 +42,6 @@ struct DBArow_t {
 
 struct DBA_t {
     int length;
-    char drink[255];
     bool array[ARRAYLEN][ARRAYLEN];
     highest winner;
 };
@@ -54,11 +52,10 @@ struct DBA_t {
  */
 
 void fillDBA(DBA * data, bool fill);
-void randomizeDBA(DBA * data, bool fill);
 void printDBAHeader(DBA * data);
 void printDBAArray(DBA * data);
 void printDBAWinner(DBA * data);
-void searchDBAArray(DBA * data, bool needle);
+int searchDBAArray(DBA * data, bool needle);
 
 
 /**
@@ -67,72 +64,50 @@ void searchDBAArray(DBA * data, bool needle);
 
 /* I have no clue how I managed to get this thing working */
 int main(int argc, char** argv) {
-    int i, j;
-    DBA * data;
+    DBA * data; // Pointer to our DD array object
 
     // Setup data
-    data = malloc(sizeof (DBA));
-    strcpy(data->drink, "Smithwick's Irish Ale!");
-    data->length = ARRAYLEN;
+    srand(time(NULL)); // Set random generator seed
+    data = malloc(sizeof (DBA)); // Create our DD array object
+    data->length = ARRAYLEN; // Set n x n DD array size
 
-    // Print info, fill array, print again, randomize array, print again, search, print winner
-    printDBAHeader(data);
-    fillDBA(data, 1);
-    printDBAArray(data);
-    randomizeDBA(data, 0);
-    printDBAArray(data);
-    searchDBAArray(data, 1);
-    printDBAWinner(data);
+    // Core work
+    if (OUTPUT) {
+        printf("sizeof data (outside function): %d\n", sizeof * data);
+        printDBAHeader(data); // Print random info about our object
+    }
+    fillDBA(data, 1); // Fill with random amount per row
+    searchDBAArray(data, 1); // Search and find row with most amount
+    if (OUTPUT) printDBAArray(data); // Print array
+    printDBAWinner(data); // Print winning row information
 
-    // Free the struct
-    free(data);
-    data = NULL;
-    
+    // Clean up our object
+    free(data); // Free the memory associated with our object
+    data = NULL; // Replace value with null
+
     return (EXIT_SUCCESS);
 }
 
 /**
- * Fill object double dimension array
+ * Fill object double dimension array with random amount per row
  * @param data Pointer to DD array
  * @param fill Object to fill with
  */
 void fillDBA(DBA * data, bool fill) {
-    int i, j;
+    int i, j, randAmt,
+            length = data->length; // Set local var for our data set height/width
 
     // Fill with passed type
-    for (i = 0; i < data->length; i++) {
-        for (j = 0; j < data->length; j++) {
-            data->array[i][j] = fill;
+    for (i = 0; i < length; i++) { // Row
+        randAmt = length - (rand() % length); // Gen random between 0 and length
+
+        for (j = 0; j < length; j++) { // Column
+            if (j < (length - randAmt)) {
+                data->array[i][j] = 0; // Before reaching random fill amount
+            } else {
+                data->array[i][j] = fill; // After reaching random fill amount
+            }
         }
-    }
-}
-
-/**
- * Generate a random number between zero and length of array to determine fill
- * quantity from left, removing the need for a randomly filled 0 & 1 sorting
- * @param data Pointer to DD array
- * @param fill Object to fill with
- */
-void randomizeDBA(DBA * data, bool fill) {
-    int i, j,
-            curRand, fillNum,
-            length = data->length, // Set local var for our data set height/width
-            size = sizeof data->array[0][0]; // Determine size of each element
-
-    // Randomize each row
-    for (i = 0; i < length; i++) {
-        // Keep adding and overflowing seed integer each iteration
-        srand(curRand += time(NULL) * 80088008 + 69696969);
-
-        // Subtract random number (between 0 and length) from length
-        fillNum = length - (rand() % (length + 1));
-
-        // Test print info
-        printf("[%d] memset(%p, %d, %d*%d);\n", i, data->array[i], fill, fillNum, size);
-
-        // Access current row's array and fill with zeros from left side
-        // note: memset works with bytes! Not index numbers!
-        memset(data->array[i], fill, fillNum * size);
     }
 }
 
@@ -141,24 +116,15 @@ void randomizeDBA(DBA * data, bool fill) {
  * @param data Pointer to DD array
  */
 void printDBAHeader(DBA * data) {
-    int i, j;
-
-    if (data) {
-        // Print object info
-        printf("%s: %dB\n"
-                "%s: %p\t%s: %p\n"
-                "%s: %d\n"
-                "%s: %s\n"
-                "%s: %d\n"
-                "%s: %p\n",
-                "sizeof (DBA)", sizeof (DBA),
-                "&data", data, "&data+1", data + 1,
-                "sizeof data->drink", sizeof data->drink,
-                "data->drink", data->drink,
-                "strlen(data->drink)", strlen(data->drink),
-                "&(data->drink)", &(data->drink));
-    }
-
+	// Print object info
+	printf("\t%s\t\t%s\t%s\t%s\n"
+			"%s\t%d\t\t%d\t\t%d\t\t%d\n"
+			"%s\t%p\t%p\t%p\t%p\n"
+			"%s\t%d\t\t%d\t\t%d\t\t%d\n",
+			"data", "data.length", "data.array", "data.winner",
+			"sizeof", sizeof * data, sizeof data->length, sizeof data->array, sizeof data->winner,
+			"address", &data, &data->length, &data->array, &data->winner,
+			"value", 0, data->length, 0, 0);
 }
 
 /**
@@ -168,58 +134,50 @@ void printDBAHeader(DBA * data) {
 void printDBAArray(DBA * data) {
     int i, j;
 
-    if (data) {
-        // Print boolean matrix
-        printf("\n{");
-        for (i = 0; i < data->length; i++) {
-            (i > 0) ? printf(" {") : printf("{");
-            for (j = 0; j < data->length; j++) {
-                printf("%d", data->array[i][j]);
-                (j < data->length - 1) ? printf(",") : printf("");
-            }
-            (i < (data->length) - 1) ? printf("}\n") : printf("}");
-        }
-        printf("}\n\n");
-    }
-}
-
-void printDBAWinner(DBA * data) {
-    int i = data->winner.index, j;
-
-    printf("Winner Index: %d\nMax Count: %d\nArray: ", data->winner.index, data->winner.max);
-    printf("{");
-    for (j = 0; j < data->length; j++) {
-        printf("%d", data->array[i][j]);
-        (j < data->length - 1) ? printf(",") : printf("");
-    }
-    printf("}\n");
+	// Print boolean matrix
+	printf("\n{"); // Print
+	for (i = 0; i < data->length; i++) {
+		(i > 0) ? printf(" {") : printf("{"); // Conditional print
+		for (j = 0; j < data->length; j++) {
+			printf("%d", data->array[i][j]); // Print
+			if (j < data->length - 1) printf(","); // Conditional print
+		}
+		(i < (data->length) - 1) ? printf("}\n") : printf("}"); // Conditional print
+	}
+	printf("}\n\n"); // Print
 }
 
 /**
- * Search through each row and determine which has most of needle
+ * Print the matching index array information
+ * @param data DD boolean array
+ */
+void printDBAWinner(DBA * data) {
+    int i;
+
+    printf("Winner Index: %d\nMax Count: %d\nArray: {", data->winner.index, data->winner.max); // Print
+    for (i = 0; i < data->length; i++) {
+        printf("%d", (i < (data->length - data->winner.max)) ? 0 : 1); // Print
+		if (i < data->length - 1) { printf(","); } // Conditional print
+    }
+    printf("}\n"); // Print
+}
+
+/**
+ * Search through each row and determine which has highest number of needle
  * @param data Pointer to DD array
  * @param needle object to search for
- * @return 
+ * @return
  */
-void searchDBAArray(DBA * data, bool needle) {
-    int i, j, counter,
-            length = data->length;
+int searchDBAArray(DBA * data, bool needle) {
+    int i, j;
 
-    for (i = 0; i < length; i++) {
-        counter = 0; // Reset counter per row
-
-        for (j = 0; j < length; j++) {
-            if (data->array[i][j] == needle)
-                counter++;
-            
-            if ((j + data->winner.max) > length)
-                continue;
-        }
-
-        // Post loop assessment
-        if (counter >= data->winner.max) {
-            data->winner.max = counter; // Capture number of matches
-            data->winner.index = i; // Capture row index number
+    for (i = 0; i < data->length; i++) { // Horizontal traversal from left to right
+        for (j = data->length; j > 0; j--) { // Vertical traversal from bottom to top
+            if (data->array[j][i] == needle) {  // Match needle
+                data->winner.max = data->length - i; // Capture X position (length) of match
+                data->winner.index = j; // Capture row index number
+                return 1; // exit function - done!
+            }
         }
     }
 }
