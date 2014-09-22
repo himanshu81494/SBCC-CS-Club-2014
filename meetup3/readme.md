@@ -21,7 +21,7 @@ SAMPLE OUTPUT:
 
 I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsheets/d/1z-ze1kIH5uhS9Y09OiaHk5n8eUmy--UJzoRqXZcvoog/pubhtml?gid=0&single=true) for the process. This really wasn't all that complicated, so it's fairly bland.
 
-** Output for 7x7**
+**Output for 7x7**
 
 		sizeof data (outside function): 72
 				data            data.length     data.array      data.winner
@@ -44,7 +44,7 @@ I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsh
 		RUN SUCCESSFUL (total time: 21ms)
 
 
-** Output for 30x30**
+**Output for 30x30**
 
 		sizeof data (outside function): 944
 				data            data.length     data.array      data.winner
