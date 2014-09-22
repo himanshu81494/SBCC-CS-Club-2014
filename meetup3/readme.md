@@ -24,7 +24,7 @@ I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsh
 ** Output for 7x7**
 
 		sizeof data (outside function): 72
-			data            data.length     data.array      data.winner
+				data            data.length     data.array      data.winner
 		sizeof  72              4               49              16
 		address 0x23aab0        0x600010340     0x600010344     0x600010378
 		value   0               7               0               0
@@ -47,7 +47,7 @@ I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsh
 ** Output for 30x30**
 
 		sizeof data (outside function): 944
-			data            data.length     data.array      data.winner
+				data            data.length     data.array      data.winner
 		sizeof  944             4               900             40
 		address 0x23aab0        0x600010340     0x600010344     0x6000106c8
 		value   0               30              0               0
