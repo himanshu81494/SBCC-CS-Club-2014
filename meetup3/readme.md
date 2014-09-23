@@ -19,7 +19,7 @@ SAMPLE OUTPUT:
 
     trueMax = 6
 
-Originall used a bruteforce method, updated to use a more efficient method of bottom-up searching. Cuts out searching once the highest has been found, removing the need for a full array scan.
+Method of bottom-up, left-right searching. Cuts out searching once the highest has been found, removing the need for a full array scan.
 
 **Output for 7x7**
 
