@@ -19,8 +19,8 @@
  * DEFINES
  */
 
-#define OUTPUT 1
-#define ARRAYLEN 30
+#define OUTPUT 0
+#define ARRAYLEN 10000
 
 
 /**
@@ -37,7 +37,6 @@ typedef char bool;
 
 struct DBArow_t {
     int max, index;
-    char row[ARRAYLEN];
 };
 
 struct DBA_t {
