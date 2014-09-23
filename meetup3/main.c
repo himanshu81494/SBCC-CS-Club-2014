@@ -119,11 +119,11 @@ void printDBAHeader(DBA * data) {
 	printf("\t%s\t\t%s\t%s\t%s\n"
 		"%s\t%d\t\t%d\t\t%d\t\t%d\n"
 		"%s\t%p\t%p\t%p\t%p\n"
-		"n/a\t%d\t\tn/a\t\tn/a\t\tn/a\n",
+		"%s\tn/a\t\t%d\t\tn/a\t\tn/a\n",
 		"data", "data.length", "data.array", "data.winner",
 		"sizeof", sizeof * data, sizeof data->length, sizeof data->array, sizeof data->winner,
 		"address", &data, &data->length, &data->array, &data->winner,
-		"value", data, data->length, data->array, data->winner);
+		"value", data->length);
 }
 
 /**
