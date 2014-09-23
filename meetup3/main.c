@@ -61,7 +61,7 @@ int searchDBAArray(DBA * data, bool needle);
  * LOGIC
  */
 
-/* I have no clue how I managed to get this thing working */
+
 int main(int argc, char** argv) {
     DBA * data; // Pointer to our DD array object
 
