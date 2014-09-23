@@ -19,7 +19,7 @@ SAMPLE OUTPUT:
 
     trueMax = 6
 
-I did a very rudimentary [Basic Spreadsheeting](https://docs.google.com/spreadsheets/d/1z-ze1kIH5uhS9Y09OiaHk5n8eUmy--UJzoRqXZcvoog/pubhtml?gid=0&single=true) for the process. This really wasn't all that complicated, so it's fairly bland.
+Originall used a bruteforce method, updated to use a more efficient method of bottom-up searching. Cuts out searching once the highest has been found, removing the need for a full array scan.
 
 **Output for 7x7**
 
