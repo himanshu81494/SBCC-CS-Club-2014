@@ -117,13 +117,13 @@ void fillDBA(DBA * data, bool fill) {
 void printDBAHeader(DBA * data) {
 	// Print object info
 	printf("\t%s\t\t%s\t%s\t%s\n"
-			"%s\t%d\t\t%d\t\t%d\t\t%d\n"
-			"%s\t%p\t%p\t%p\t%p\n"
-			"%s\t%d\t\t%d\t\t%d\t\t%d\n",
-			"data", "data.length", "data.array", "data.winner",
-			"sizeof", sizeof * data, sizeof data->length, sizeof data->array, sizeof data->winner,
-			"address", &data, &data->length, &data->array, &data->winner,
-			"value", 0, data->length, 0, 0);
+		"%s\t%d\t\t%d\t\t%d\t\t%d\n"
+		"%s\t%p\t%p\t%p\t%p\n"
+		"%s\t%d\t\t%d\t\t%d\t\t%d\n",
+		"data", "data.length", "data.array", "data.winner",
+		"sizeof", sizeof * data, sizeof data->length, sizeof data->array, sizeof data->winner,
+		"address", &data, &data->length, &data->array, &data->winner,
+		"value", 0, data->length, 0, 0);
 }
 
 /**
